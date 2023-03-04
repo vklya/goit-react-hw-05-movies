@@ -1,17 +1,18 @@
 import { memo } from 'react';
 import PropTypes from 'prop-types';
+import css from './review.module.scss';
 
-const Review = ({ reviews }) => {
-  const cards = reviews.map(({ id, author, content }) => {
+const Review = ({ items }) => {
+  const cards = items.map(({ id, author, content }) => {
     return (
-      <li key={id}>
-        <h4>Author: {author}</h4>
+      <li key={id} className={css.item}>
+        <h3 className={css.name}>Author: {author}</h3>
         <p>{content}</p>
       </li>
     );
   });
 
-  return <ul>{cards}</ul>;
+  return <ul className={css.list}>{cards}</ul>;
 };
 
 export default memo(Review);

@@ -1,0 +1,23 @@
+.list {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    border-top: 0.5px solid #000;
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+    flex-basis: calc((100% - 20px) / 7);
+}
+
+.image {
+    max-height: 240px;
+    max-width: 196px;
+    border-radius: 4px;
+    width: auto;
+    object-fit: cover;
+}
+

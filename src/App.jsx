@@ -1,6 +1,7 @@
 import { lazy, Suspense } from "react";
 import { Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Loader from "components/Loader";
 import Nav from "components/Nav";
 
@@ -25,7 +26,7 @@ export const App = () => {
           <Route path="*" element={<Home />} />
         </Routes>
       </Suspense>
-      <ToastContainer autoClose="3000" theme="dark" position="bottom-right" />
+      <ToastContainer autoClose="3000" theme="light" position="top-right" />
     </>
   );
 };

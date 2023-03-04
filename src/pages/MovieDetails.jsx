@@ -5,6 +5,12 @@ import MovieCard from "components/MovieCard";
 import Error from "components/Error";
 import Loader from "components/Loader";
 import BackLink from "components/BackLink";
+import styled from 'styled-components';
+
+const AddInfo = styled.div`
+    padding: 20px;
+  }
+`;
 
 const MovieDetails = () => {
     const [movie, setMovie] = useState([]);
@@ -14,7 +20,7 @@ const MovieDetails = () => {
     const { id } = useParams();
 
     const location = useLocation();
-    const goBack = location.state?.from || '/'; 
+    const goBack = location.state?.from ?? '/'; 
 
     useEffect(() => {
         const fetchMovies = async () => {
@@ -40,15 +46,17 @@ const MovieDetails = () => {
         {loading && <Loader />}
         {error && <Error text={error} />}
         {movie && <MovieCard movie={movie} />}
-        <h3>Additional information</h3>
-        <ul>
-          <li>
-            <Link to="cast">Cast</Link>
-          </li>
-          <li>
-            <Link to="reviews">Reviews</Link>
-          </li>
-        </ul>
+        <AddInfo>
+          <h3>Additional information</h3>
+          <ul>
+            <li>
+              <Link to="cast">Cast</Link>
+            </li>
+            <li>
+              <Link to="reviews">Reviews</Link>
+            </li>
+          </ul>
+        </AddInfo>
         <Outlet />
       </main>
     );

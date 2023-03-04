@@ -1,11 +1,12 @@
 import { memo } from 'react';
 import PropTypes from 'prop-types';
+import css from './cast.module.scss';
 import defaultAvatar from '../../../images/defaultAvatar.jpeg';
 
 const CastCard = ({ cast }) => {
     const cards = cast.map(({ id, profile_path, name, character }) => { 
         return (
-          <li key={id}>
+          <li key={id} className={css.item}>
             <img
               loading="lazy"
               src={
@@ -14,18 +15,15 @@ const CastCard = ({ cast }) => {
                   : defaultAvatar
               }
               alt={name}
+              className={css.image}
             />
-            <h2>
-              {name}
-                </h2>
-                <p>
-                    Character: {character}
-                </p>
+            <h3>{name}</h3>
+            <p>Character: {character}</p>
           </li>
         );}
   );
 
-  return <ul>{cards}</ul>;
+  return <ul className={css.list}>{cards}</ul>;
 };
 
 export default memo(CastCard);

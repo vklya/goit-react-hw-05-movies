@@ -3,6 +3,12 @@ import MoviesList from 'components/MoviesList';
 import { getTrending } from "services/api";
 import Error from "components/Error";
 import Loader from "components/Loader";
+import styled from 'styled-components';
+
+const StyledHeading = styled.h1`
+    text-align: center;
+  }
+`;
 
 const Home = () => {
     const [items, setItems] = useState([]);
@@ -27,10 +33,11 @@ const Home = () => {
     }, []);
 
     return (
-      <main>
-        {error && <Error text={error} />}
-        {loading ? <Loader /> : <MoviesList items={items} />}
-      </main>
+        <main>
+            <StyledHeading>Trending today</StyledHeading>
+            {error && <Error text={error} />}
+            {loading ? <Loader /> : <MoviesList items={items} />}
+        </main>
     );
 };
 

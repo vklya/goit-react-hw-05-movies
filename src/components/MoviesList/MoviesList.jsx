@@ -2,6 +2,7 @@ import { memo } from "react";
 import { useLocation, Link } from "react-router-dom";
 import PropTypes from 'prop-types';
 import defaultPoster from '../../images/defaultPoster.jpg'
+import css from './list.module.scss';
 
 const MoviesList = ({ items }) => {
     const location = useLocation();
@@ -9,8 +10,13 @@ const MoviesList = ({ items }) => {
     const movies = items.map(({ id, poster_path, title, release_date }) => {
         const year = release_date.slice(0, 4);
         return (
-          <Link key={id} to={`/movies/${id}`} state={{ from: location }}>
-            <li>
+          <Link
+            key={id}
+            to={`/movies/${id}`}
+            state={{ from: location }}
+            className={css.link}
+          >
+            <li className={css.item}>
               <img
                 loading="lazy"
                 src={
@@ -19,16 +25,17 @@ const MoviesList = ({ items }) => {
                     : defaultPoster
                 }
                 alt={title}
+                className={css.image}
               />
-              <h2>
-        {title} ({year})
+              <h2 className={css.title}>
+                {title} {year && <span>({year})</span>}
               </h2>
             </li>
           </Link>
         );});
     
     return (
-        <ul>
+        <ul className={css.list}>
             {movies}
         </ul>
     );

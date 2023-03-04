@@ -1,0 +1,23 @@
+.list {
+    padding: 20px;
+    border-top: 0.5px solid #000;
+}
+
+.item {
+    &:not(:last-child) {
+        margin-bottom: 20px;
+    }
+}
+
+.image {
+    max-height: 240px;
+    max-width: 196px;
+    border-radius: 4px;
+    width: auto;
+    object-fit: cover;
+}
+
+.name {
+    margin-bottom: 4px;
+}
+

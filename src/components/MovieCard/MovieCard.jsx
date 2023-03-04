@@ -1,5 +1,6 @@
 import defaultPoster from '../../images/defaultPoster.jpg';
 import PropTypes from 'prop-types';
+import css from './card.module.scss';
 
 const MovieCard = ({ movie }) => {
     const {
@@ -10,8 +11,9 @@ const MovieCard = ({ movie }) => {
         genres,
         vote_average } = movie;
     
-    return (
-      <section>
+  return (
+    <>
+      <section className={css.section}>
         <img
           src={
             poster_path
@@ -19,21 +21,21 @@ const MovieCard = ({ movie }) => {
               : defaultPoster
           }
           alt={title}
+          className={css.image}
         />
-        <div>
-          <h2>
+        <div className={css.info}>
+          <h1 className={css.gap}>
             {title} {release_date && <span>({release_date.slice(0, 4)})</span>}
-          </h2>
-          <p>User Score: {vote_average * 10}%</p>
-          <h3>Overview</h3>
+          </h1>
+          <p>User Score: {Math.round(vote_average * 10)}%</p>
+          <h2 className={css.gap}>Overview</h2>
           <p>{overview}</p>
-          <h4>Genres</h4>
+          <h3 className={css.gap}>Genres</h3>
           {genres && <p>{genres.map(genre => genre.name).join(', ')}</p>}
         </div>
       </section>
-    );
-    
-    
+    </>
+  );
 }
 
 export default MovieCard;

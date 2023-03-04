@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { toast } from 'react-toastify';
-import { GoSearch } from 'react-icons/go';
+import { IoIosSearch } from 'react-icons/io';
 import css from './searchbox.module.scss';
 
 export default function SearchBox({ onSubmit }) {
@@ -24,16 +24,16 @@ export default function SearchBox({ onSubmit }) {
 
   return (
     <form className={css.form} onSubmit={handleSubmit}>
-        <input
-            className={css.input}
-            type="text"
-            placeholder="Search movies"
-            value={query}
-            onChange={handleChange}
-        />
-        <button type="submit" className={css.button}>
-            <GoSearch className={css.icon} />
-        </button>
+      <input
+        className={css.input}
+        type="text"
+        placeholder="Search movies"
+        value={query}
+        onChange={handleChange}
+      />
+      <button type="submit" className={css.button}>
+        <IoIosSearch className={css.icon} />
+      </button>
     </form>
   );
 }

@@ -19,7 +19,7 @@ const Reviews = () => {
         const fetchReviews = async () => {
             try {
                 setLoading(true);
-                const results = await getReviews(id, page);
+                const { results } = await getReviews(id, page);
                 setReviews(prevItems => [...prevItems, ...results]);
             } catch (error) {
                 setError(error.message);
@@ -29,7 +29,7 @@ const Reviews = () => {
         };
         fetchReviews();
     }, [id, page]);
-    console.log(reviews);
+    // console.log(reviews);
 
     const onLoadMore = () => {
         setPage(prevPage => prevPage + 1);
@@ -39,7 +39,7 @@ const Reviews = () => {
       <section>
         {loading && <Loader />}
         {error && <Error text={error} />}
-        {reviews ? <Review items={reviews} /> : <Error text={'There is no reviewsfor this movie yet.'} />}
+        {reviews ? <Review items={reviews} /> : <Error text={'There is no reviews for this movie yet.'} />}
         <Button onClick={onLoadMore} text={'Load more'} />
       </section>
     );

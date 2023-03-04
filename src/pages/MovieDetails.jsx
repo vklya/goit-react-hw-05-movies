@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useParams, useLocation } from "react-router-dom";
+import { Link, Outlet, useParams, useLocation } from "react-router-dom";
 import { getDetails } from "services/api";
 import MovieCard from "components/MovieCard";
 import Error from "components/Error";
@@ -43,16 +43,13 @@ const MovieDetails = () => {
         <h3>Additional information</h3>
         <ul>
           <li>
-            <Link to="cast">
-              Cast
-            </Link>
+            <Link to="cast">Cast</Link>
           </li>
           <li>
-            <Link to="reviews">
-              Reviews
-            </Link>
+            <Link to="reviews">Reviews</Link>
           </li>
         </ul>
+        <Outlet />
       </main>
     );
 }

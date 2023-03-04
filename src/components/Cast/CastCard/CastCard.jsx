@@ -22,8 +22,8 @@ const CastCard = ({ cast }) => {
                     Character: {character}
                 </p>
           </li>
-        );
-  });
+        );}
+  );
 
   return <ul>{cards}</ul>;
 };
@@ -31,7 +31,7 @@ const CastCard = ({ cast }) => {
 export default memo(CastCard);
 
 CastCard.propTypes = {
-  items: PropTypes.arrayOf(PropTypes.object).isRequired,
+  cast: PropTypes.arrayOf(PropTypes.object).isRequired,
   id: PropTypes.string,
   profile_path: PropTypes.string,
   name: PropTypes.string,

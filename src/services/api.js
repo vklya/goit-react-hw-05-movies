@@ -14,7 +14,7 @@ export const getTrending = async () => {
     return data;
 }
 
-export const searchMovies = async (query,page = 1, include_adult = false) => {
+export const searchMovies = async (query, page = 1, include_adult = false) => {
     const { data } = await instance.get("/search/movie", {
         params: {
             query,
@@ -37,7 +37,7 @@ export const getCredits = async (id) => {
 }
 
 export const getReviews = async (id, page = 1) => {
-    const { data } = await instance.get(`/movie/${id}/reviews`, {
+    const { data } = await instance.get(`movie/${id}/reviews`, {
         params: {
             page,
         }

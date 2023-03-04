@@ -6,7 +6,6 @@ import Error from 'components/Error';
 import Loader from 'components/Loader';
 import Button from 'components/Button';
 
-
 const Reviews = () => {
     const [reviews, setReviews] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -16,11 +15,11 @@ const Reviews = () => {
     const { id } = useParams();
 
     useEffect(() => {
+        if (!id) return;
         const fetchReviews = async () => {
-            if (!id) return;
             try {
                 setLoading(true);
-                const { results } = await getReviews(id, page);
+                const results = await getReviews(id, page);
                 setReviews(prevItems => [...prevItems, ...results]);
             } catch (error) {
                 setError(error.message);
@@ -30,6 +29,7 @@ const Reviews = () => {
         };
         fetchReviews();
     }, [id, page]);
+    console.log(reviews);
 
     const onLoadMore = () => {
         setPage(prevPage => prevPage + 1);

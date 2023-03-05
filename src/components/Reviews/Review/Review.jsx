@@ -18,7 +18,7 @@ const Review = ({ items }) => {
 export default memo(Review);
 
 Review.propTypes = {
-  reviews: PropTypes.arrayOf(PropTypes.object).isRequired,
+  items: PropTypes.arrayOf(PropTypes.object).isRequired,
   id: PropTypes.string,
   author: PropTypes.string,
   content: PropTypes.string,

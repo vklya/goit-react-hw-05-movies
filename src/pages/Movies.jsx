@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useLocation, useSearchParams } from "react-router-dom";
 import { searchMovies } from "services/api";
 import { toast } from 'react-toastify';
 import Error from 'components/Error';
@@ -7,42 +8,47 @@ import SearchBox from "components/SearchBox";
 import MoviesList from "components/MoviesList";
 
 const Movies = () => {
-    const [query, setQuery] = useState('');
     const [items, setItems] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
+    const [searchParams, setSearchParams] = useSearchParams();
+    const searchQuery = searchParams.get('query');
+    const location = useLocation();
     
     useEffect(() => {
-        if (!query) return;
-        const fetchMovies = async () => {
-            try {
-                setLoading(true);
-                const { results } = await searchMovies(query);
-                if (results.length === 0) {
-                    toast.error(
-                        'Sorry, there are no movies matching your search query. Please try again.'
-                    );
-                }
-                setItems(results);
-            } catch (error) {
-                setError(error.message);
-            } finally {
-                setLoading(false);
-            }
+      if (!searchQuery) return;
+      const fetchMovies = async () => {
+        try {
+          setLoading(true);
+          const { results } = await searchMovies(searchQuery);
+          if (results.length === 0) {
+            toast.error(
+              'Sorry, there are no movies matching your search query. Please try again.'
+            );
+          }
+          setItems(results);
+        } catch (error) {
+          setError(error.message);
+        } finally {
+          setLoading(false);
         }
-        fetchMovies();
-    }, [query]);
+      };
+      fetchMovies();
+    }, [searchQuery]);
 
-    const onSearch = ({query}) => {
-        setQuery(query);
+    const onSearch = result => {
+        const value = result.query;
+        if (searchQuery === value) return;
+        setSearchParams({query: value});
         setItems([]);
     }
+
 
     return (
         <main>
             <SearchBox onSubmit={onSearch} />
             {error && <Error text={error} />}
-            {loading ? <Loader /> : <MoviesList items={items} />}
+            {loading ? <Loader /> : <MoviesList items={items} location={location} />}
         </main>
     );
 }

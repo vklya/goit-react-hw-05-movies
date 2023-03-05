@@ -18,7 +18,7 @@ export default function SearchBox({ onSubmit }) {
         return;
     }
 
-    onSubmit({ query });
+    onSubmit({query});
     setQuery('');
   };
 

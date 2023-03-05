@@ -1,11 +1,10 @@
 import { memo } from "react";
-import { useLocation, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
 import defaultPoster from '../../images/defaultPoster.jpg'
 import css from './list.module.scss';
 
-const MoviesList = ({ items }) => {
-    const location = useLocation();
+const MoviesList = ({ items, location }) => {
 
     const movies = items.map(({ id, poster_path, title, release_date }) => {
         const year = release_date.slice(0, 4);
